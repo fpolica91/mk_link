@@ -4,10 +4,16 @@
 # -----------------------------------------------
 
 type Mutation {
-  createUser(user: UserInput!): User!
+  createUser(user: UserInput!): NewUser!
+}
+
+type NewUser {
+  user: User
+  wallet: Wallet!
 }
 
 type Query {
+  getUser(id: String!): UserData!
   hello: String!
 }
 
@@ -18,9 +24,19 @@ type User {
   username: String!
 }
 
+type UserData {
+  user: User
+  wallet: Wallet!
+}
+
 input UserInput {
   avatarUrl: String
-  email: String!
-  username: String!
+  email: String
+  username: String
+  walletId: String!
+}
+
+type Wallet {
+  id: String!
   walletId: String!
 }
